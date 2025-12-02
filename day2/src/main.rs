@@ -38,11 +38,15 @@ fn is_text_half_repeated(text: &str) -> bool {
 }
 
 /// The mistery is the sum of the invalid ids
-fn decode_mistery_1(ranges: &Vec<Range<Int>>) -> Int {
+/// Invalidator is a function that returns true when invalid
+fn decode_mistery<T>(ranges: &Vec<Range<Int>>, invalidator: T) -> Int
+where
+    T: Fn(&str) -> bool,
+{
     ranges
         .iter()
         .flat_map(|r| r.start..r.end)
-        .filter(|n| is_text_half_repeated(&n.to_string()))
+        .filter(|n| invalidator(&n.to_string()))
         .sum()
 }
 
@@ -52,6 +56,6 @@ fn main() {
     let ranges = parse_text_into_ranges(&text);
 
     // Return solutions
-    let password_1 = decode_mistery_1(&ranges);
+    let password_1 = decode_mistery(&ranges, is_text_half_repeated);
     println!("Part 1: {password_1}");
 }
