@@ -22,6 +22,21 @@ fn parse_text_into_ranges(text: &str) -> Vec<Range<Int>> {
         .collect()
 }
 
+/// Examples:
+///     "123123" -> true  because "123" == "123"
+///     "11"     -> true  because   "1" == "1"
+///     "1234"   -> false because  "12" == "34"
+fn is_text_half_repeated(text: &str) -> bool {
+    let l = text.len();
+
+    if l & 1 == 1 {
+        return false;
+    }
+
+    let half = l / 2;
+    &text[..half] == &text[half..]
+}
+
 fn main() {
     // Parse input
     let text = quick_read!("input.txt");
