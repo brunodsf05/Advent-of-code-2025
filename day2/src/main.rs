@@ -62,7 +62,7 @@ fn is_text_made_of_sequence(text: &str) -> bool {
         // Count how many block are equal
         let block_size: usize = l / block_num;
         let mut offset: usize = block_size;
-        let mut record = 0;
+        let mut record = 1;
         for _ in 1..block_num {
             let (a, b) = (&text[..block_size], &text[offset..offset + block_size]);
             if a == b {
@@ -72,7 +72,7 @@ fn is_text_made_of_sequence(text: &str) -> bool {
         }
 
         // If all blocks are equal, then we've found the sequence
-        if record == block_num - 1 {
+        if record == block_num {
             return true;
         }
     }
