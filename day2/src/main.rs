@@ -1,7 +1,9 @@
 use std::ops::Range;
 use utils::quick_read;
 
-fn parse_text_into_ranges(text: &str) -> Vec<Range<u64>> {
+type Int = u64;
+
+fn parse_text_into_ranges(text: &str) -> Vec<Range<Int>> {
     text.split(',')
         .map(|s| {
             s.split_once('-')
@@ -9,8 +11,8 @@ fn parse_text_into_ranges(text: &str) -> Vec<Range<u64>> {
                 .map_or_else(
                     || panic!("{s} range has an invalid format"),
                     |(l, r)| {
-                        let parse = |s: &str| s.trim().parse::<u64>().unwrap();
-                        Range::<u64> {
+                        let parse = |s: &str| s.trim().parse::<Int>().unwrap();
+                        Range::<Int> {
                             start: parse(l),
                             end: parse(r),
                         }
@@ -24,5 +26,4 @@ fn main() {
     // Parse input
     let text = quick_read!("input.txt");
     let ranges = parse_text_into_ranges(&text);
-    println!("{ranges:#?}")
 }
