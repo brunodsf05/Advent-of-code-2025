@@ -48,6 +48,18 @@ fn is_text_made_of_sequence(text: &str) -> bool {
     // At the beginning, the text is split into a few big blocks, and as we go
     // it gets divided into more and smaller blocks until making each block
     // contain one character
+    //
+    // Example:
+    //     With a string "6767676767" which is 10 characters long...
+    //     1.  Let's divide it in two (10/2=5) -> `67676~76767`
+    //     2.  As you can see both parts are different, so let's divide the
+    //         string again in more smaller block:
+    //         1. Three blocks is impossible because (10/3=3.33) is a float
+    //         2. Four blocks is impossible because (10/4=2.5) is a float
+    //         3. Five blocks is the answer because (10/5=2) is an integer
+    //     3. If we compare all five blocks `67~67~67~67~67` we find out
+    //        that are al equal!
+
     let mut block_num: usize = 1;
 
     while block_num < l {
