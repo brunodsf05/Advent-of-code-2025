@@ -37,8 +37,21 @@ fn is_text_half_repeated(text: &str) -> bool {
     &text[..half] == &text[half..]
 }
 
+/// The mistery is the sum of the invalid ids
+fn decode_mistery_1(ranges: &Vec<Range<Int>>) -> Int {
+    ranges
+        .iter()
+        .flat_map(|r| r.start..r.end)
+        .filter(|n| is_text_half_repeated(&n.to_string()))
+        .sum()
+}
+
 fn main() {
     // Parse input
     let text = quick_read!("input.txt");
     let ranges = parse_text_into_ranges(&text);
+
+    // Return solutions
+    let password_1 = decode_mistery_1(&ranges);
+    println!("Part 1: {password_1}");
 }
