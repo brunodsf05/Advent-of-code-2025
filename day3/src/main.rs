@@ -3,7 +3,13 @@ use utils::quick_read;
 type Bank = Vec<i32>;
 
 fn parse_input_into_banks(text: &str) -> Vec<Bank> {
-    Vec::new()
+    text.lines()
+        .map(|line| {
+            line.chars()
+                .filter_map(|c| c.to_string().parse::<i32>().ok())
+                .collect::<Bank>()
+        })
+        .collect()
 }
 
 fn main() {
