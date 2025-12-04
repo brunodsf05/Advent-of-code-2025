@@ -1,10 +1,20 @@
 use utils::quick_read;
 
 type Cell = bool;
-type Grid = Vec<Vec<Cell>>;
+type Row = Vec<Cell>;
+type Grid = Vec<Row>;
 
 fn parse_input_into_grid(text: &str) -> Grid {
-    Vec::new()
+    text.lines()
+        .map(|line| {
+            line.chars()
+                .map(|char| match char {
+                    '@' => true,
+                    _ => false,
+                })
+                .collect::<Row>()
+        })
+        .collect()
 }
 
 fn main() {
