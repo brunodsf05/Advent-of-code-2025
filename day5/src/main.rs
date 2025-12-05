@@ -1,4 +1,11 @@
+use std::ops::Range;
 use utils::quick_read;
+
+type Input = (Vec<Range<usize>>, Vec<usize>);
+
+fn parse_input(text: &str) -> Input {
+    (Vec::new(), Vec::new())
+}
 
 fn main() {
     // Parse input
