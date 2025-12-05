@@ -34,7 +34,19 @@ fn parse_input(text: &str) -> Input {
 }
 
 fn decode_mistery_1(input: &Input) -> usize {
-    0
+    let (ranges, numbers) = input;
+    let mut fresh = 0;
+
+    for n in numbers {
+        for r in ranges {
+            if r.contains(&n) {
+                fresh += 1;
+                break;
+            }
+        }
+    }
+
+    return fresh;
 }
 
 fn main() {
