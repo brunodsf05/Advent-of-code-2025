@@ -1,4 +1,4 @@
-use std::ops::Range;
+use std::{collections::HashSet, ops::Range};
 use utils::quick_read;
 
 type Input = (Vec<Range<usize>>, Vec<usize>);
@@ -49,6 +49,19 @@ fn decode_mistery_1(input: &Input) -> usize {
     return fresh;
 }
 
+fn decode_mistery_2(input: &Input) -> usize {
+    let (ranges, _) = input;
+    let mut fresh: HashSet<usize> = HashSet::new();
+
+    for r in ranges {
+        for n in r.start..r.end {
+            fresh.insert(n);
+        }
+    }
+
+    return fresh.iter().count();
+}
+
 fn main() {
     // Parse input
     let text = quick_read!("input.txt");
@@ -58,6 +71,6 @@ fn main() {
     let password_1 = decode_mistery_1(&input);
     println!("Part 1: {password_1}");
 
-    let password_2 = 0;
+    let password_2 = decode_mistery_2(&input);
     println!("Part 2: {password_2}");
 }
