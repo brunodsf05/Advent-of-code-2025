@@ -33,15 +33,17 @@ fn parse_input(text: &str) -> Input {
     return (ranges, numbers);
 }
 
+fn decode_mistery_1(input: &Input) -> usize {
+    0
+}
+
 fn main() {
     // Parse input
     let text = quick_read!("input.txt");
     let input = parse_input(&text);
-    let (a, b) = input;
-    println!("{a:?} {b:?}");
 
     // Return solutions
-    let password_1 = 0;
+    let password_1 = decode_mistery_1(&input);
     println!("Part 1: {password_1}");
 
     let password_2 = 0;
