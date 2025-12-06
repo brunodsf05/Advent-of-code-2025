@@ -60,7 +60,7 @@ fn decode_mistery_2(input: &Input) -> usize {
 
     // Flatten the list of ranges into Ends.
     // [(10..=14) (3..=5) (16..=20) (12..=18)]
-    // [L10 L14 L3 R5 L16 R20 L12 R18]
+    // [L10 R14 L3 R5 L16 R20 L12 R18]
 
     let mut ends: Vec<End> = ranges
         .iter()
