@@ -1,6 +1,5 @@
-use std::{collections::HashMap, iter::Sum};
+use std::collections::HashMap;
 
-use itertools::Itertools;
 use utils::quick_read;
 
 fn decode_mistery_1(text: &str) -> i64 {

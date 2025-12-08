@@ -1,4 +1,4 @@
-use std::{collections::HashSet, ops::Range};
+use std::ops::Range;
 use utils::quick_read;
 
 type Input = (Vec<Range<usize>>, Vec<usize>);
