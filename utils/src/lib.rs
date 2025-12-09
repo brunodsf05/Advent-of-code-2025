@@ -21,6 +21,45 @@ macro_rules! quick_read {
     ($path:expr) => {{ $crate::quick_read_impl(env!("CARGO_MANIFEST_DIR"), $path) }};
 }
 
+pub mod grid {
+    use std::ops::Range;
+
+    /// Defines the grid cell type.
+    pub trait EmptyCell {
+        /// Returned when request is out-of-bounds.
+        fn empty() -> Self;
+    }
+
+    pub type Row<T> = Vec<T>;
+    pub type Grid<T> = Vec<Row<T>>;
+
+    /// Gets a cell relatively from another.
+    pub fn get_adjacent_cell<T: EmptyCell + Clone>(
+        grid: &Grid<T>,
+        px: usize,
+        py: usize,
+        ox: i32,
+        oy: i32,
+        rx: &Range<i32>,
+        ry: &Range<i32>,
+    ) -> T {
+        // Helper to sum offsets
+        fn sum(p: usize, o: i32) -> i32 {
+            p as i32 + o
+        }
+
+        let x = sum(px, ox);
+        let y = sum(py, oy);
+
+        if rx.contains(&x) && ry.contains(&y) {
+            let (xu, yu) = (x as usize, y as usize);
+            return grid[yu][xu].clone();
+        }
+
+        T::empty()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
